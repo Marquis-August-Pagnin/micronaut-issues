@@ -41,9 +41,6 @@ public class ServiceA {
         tracer.activeSpan().setBaggageItem("foo", "bar");
         Assertions.assertEquals("bar", tracer.activeSpan().getBaggageItem("foo"));
 
-        //                     ServiceA
-        //                     /      \
-        //             ServiceB       ServiceC
         final Single<Integer> serviceBResponse =
             client.retrieve(HttpRequest.GET("/v1/serviceB/"), Integer.class).singleOrError();
         final Single<Integer> serviceCResponse =
